@@ -1,8 +1,8 @@
 /*
- * @lc app=leetcode.cn id=9 lang=cpp
+ * @lc app=leetcode.cn id=3130 lang=cpp
  * @lcpr version=30204
  *
- * [9] 回文数
+ * [3130] 找出所有稳定的二进制数组 II
  */
 
 
@@ -27,10 +27,8 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    bool isPalindrome(int x) {
+    int numberOfStableArrays(int zero, int one, int limit) {
         
-        
-
     }
 };
 // @lc code=end
@@ -39,15 +37,15 @@ public:
 
 /*
 // @lcpr case=start
-// 121\n
+// 1\n1\n2\n
 // @lcpr case=end
 
 // @lcpr case=start
-// -121\n
+// 1\n2\n1\n
 // @lcpr case=end
 
 // @lcpr case=start
-// 10\n
+// 3\n3\n2\n
 // @lcpr case=end
 
  */

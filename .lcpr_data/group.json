@@ -1,1 +1,6 @@
-{"version":1,"all_group":[{"name":"fav","time":1721524907417,"qid_list":["1288","3046"]}]}
+{
+  "version": 1,
+  "all_group": [
+    { "name": "fav", "time": 1721524907417, "qid_list": ["1288", "3046"] }
+  ]
+}

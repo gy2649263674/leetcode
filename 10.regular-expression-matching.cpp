@@ -5,7 +5,6 @@
  * [10] 正则表达式匹配
  */
 
-
 // @lcpr-template-start
 using namespace std;
 #include <algorithm>
@@ -23,21 +22,52 @@ using namespace std;
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <string.h>
 // @lcpr-template-end
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    bool isMatch(string s, string p) {
-        for(int i = 0;i<p.length();i++)
+    int dp[30][30];
+    string s, p;
+    bool isMatch(string s, string p)
+    {
+        memset(dp, -1, sizeof(dp));
+        this->s = s;
+        this->p = p;
+        return dfs(s.length() - 1, p.length() - 1);
+    }
+    int dfs(int ss, int pp)
+    {
+        if (ss < 0 || pp < 0)
         {
-            
+            return false;
+        }
+        if (dp[ss][pp] != -1)
+        {
+            return dp[ss][pp];
+        }
+        if (p[pp] == '*')
+        {
+            return dp[ss][pp] = dfs(ss - 1, pp - 1) | dfs(ss, pp - 1);
+        }
+        else if (p[pp] == '.')
+        {
+            return dp[ss][pp] = dfs(ss - 1, pp - 1);
+        }
+        else
+        {
+            return dp[ss][pp] = s[ss] == p[pp];
         }
     }
 };
 // @lc code=end
-
-
-
+int main(void)
+{
+    Solution s;
+    cout << s.isMatch("aa", "a") << endl;
+    return 0;
+}
 /*
 // @lcpr case=start
 // "aa"\n"a"\n
@@ -52,4 +82,3 @@ public:
 // @lcpr case=end
 
  */
-
