@@ -5,7 +5,6 @@
  * [3130] 找出所有稳定的二进制数组 II
  */
 
-
 // @lcpr-template-start
 using namespace std;
 #include <algorithm>
@@ -25,15 +24,26 @@ using namespace std;
 #include <vector>
 // @lcpr-template-end
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    int numberOfStableArrays(int zero, int one, int limit) {
-        
+    int numberOfStableArrays(int zero, int one, int limit)
+    {
+        int dp[1000][1000] = {0};
+        for (int i = 0; i < zero; i++)
+        {
+            for (int j = 0; j < one; j++)
+            {
+                // you yi ge yi
+                for (int l = 0; l < limit; l++)
+                {
+                    dp[i][j] = dp[][j - 1]
+                }
+            }
+        }
     }
 };
 // @lc code=end
-
-
 
 /*
 // @lcpr case=start
@@ -49,4 +59,3 @@ public:
 // @lcpr case=end
 
  */
-
