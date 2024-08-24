@@ -27,54 +27,48 @@ using namespace std;
 class Solution
 {
 public:
-    int search(vector<int> &arr, int target)
+    int search(vector<int> &nums, int& target)
     {
-        int n = arr.size();
-        int ans = 0, mval = arr[n / 2];
-        int pos = 0;
-        if (arr.back() > ans)
+        int n = nums.size();
+        int l = 0, r = n - 1;
+        auto it = upper_bound(nums.begin(), nums.end(), nums[0], greater<int>());
+        // 1 2 3 4 5 6
+        if (it == nums.end())
         {
-            // left
-            int l = 0, r = n / 2;
-            while (l < r)
-            {
-                int mid = l + r >> 1;
-                if (arr[mid] > mval)
-                {
-                    l = mid + 1;
-                }
-                else
-                {
-                    r = mid - 1;
-                    pos = r;
-                }
-            }
+            auto tmp = lower_bound(nums.begin(), nums.end(), target)-nums.begin();
+            return tmp == nums.end()-nums.begin() ? -1 : (nums[tmp] == target? tmp : -1);
         }
+        // 4 5 6 1 2 3
         else
         {
-            int l = 0, r = n / 2;
-            while (l < r)
+            int maxn = it - nums.begin();
+            auto tmp = lower_bound(nums.begin(), it, target) - nums.begin();
+            if (tmp < maxn&&nums[tmp] == target)
             {
-                int mid = l + r >> 1;
-                if (arr[mid] > mval)
+                return tmp;
+            }
+            else
+            {
+                tmp = lower_bound(it, nums.end(), target) - it;
+                maxn = nums.end() - it;
+                if (tmp < maxn && nums[tmp + it - nums.begin()] == target)
                 {
-                    pos = l;
-                    l = mid + 1;
+                    return tmp + it - nums.begin();;
                 }
                 else
                 {
-                    r = mid - 1;
+                    return -1;
                 }
             }
         }
-        pos = min(n - 1, pos);
-        pos = max(pos, -1);
-        auto it = lower_bound(arr.begin(), arr.begin() + pos + 1, target);
-        auto it2 = lower_bound(arr.begin() + pos)
     }
 };
 // @lc code=end
-
+int main(void)
+{
+    Solution s;
+    cout<<s.search(vector<int>{4, 5, 6, 7, 0, 1, 2}, 0);
+}
 /*
 // @lcpr case=start
 // [4,5,6,7,0,1,2]\n0\n

@@ -1,78 +1,30 @@
 {
-  "tasks": [
-    {
-      "type": "cppbuild",
-      "label": "C/C++: g++.exe 生成活动文件",
-      "command": "E:\\mingw-w64-gcc-13.2-stable-r40\\bin\\g++.exe",
-      "args": [
-        "-fdiagnostics-color=always",
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
-        //placeholder
-      ],
-      "options": {
-        "cwd": "${fileDirname}"
-        //current working direct
-      },
-      /* //Specifically, in the context of problem matchers in tools 
-      like IDEs or build systems, the dollar sign is used to referen
-      ce predefined problem matchers that are provided by the tool or framework. 
-      These predefined problem matchers are designed to capture and parse specific types of issues or messages 
-      from the output of commands or processes.
-      /*For example, $gcc refers to a predefined problem matcher specifically tailored to match and capture errors and warnings produced by the GCC (GNU Compiler Collection) compiler. By using $gcc in the configuration, the tool knows to apply the predefined rules for identifying and processing issues related to GCC output.
-In summary, the dollar sign ($) in this context is used to reference predefined variables or placeholders that have specific meanings or functionality within the tool or framework, allowing for dynamic configuration and processing of output messages.
-*/
-      "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "detail": "调试器生成的任务。"
-    },
-    {
-      "type": "cppbuild",
-      "label": "C/C++: gcc.exe 生成活动文件",
-      "command": "E:/mingw-w64-gcc-13.2-stable-r40/bin/g++.exe",
-      "args": [
-        "-fdiagnostics-color=always",
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe",
-        ""
-      ],
-      "options": {
-        "cwd": "E:/mingw-w64-gcc-13.2-stable-r40/bin"
-      },
-      "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "detail": "调试器生成的任务。"
-    },
-    {
-      "type": "cppbuild",
-      "label": "C/C++: g++.exe 生成活动文件",
-      "command": "E:\\mingw-w64-gcc-13.2-stable-r40\\bin\\g++.exe",
-      "args": [
-        "-fdiagnostics-color=always",
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
-      ],
-      "options": {
-        "cwd": "${fileDirname}"
-      },
-      "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "detail": "编译器: E:\\mingw-w64-gcc-13.2-stable-r40\\bin\\g++.exe"
-    }
-  ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++.exe build active file",
+			"command": "E:/mingw-w64-gcc-13.2-stable-r40/bin/g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-o",
+				"${workspaceFolder}\\build\\debug\\${fileBasenameNoExtension}.exe",
+				//max current dir's absiolute path
+				""
+			],
+			"options": {
+				"cwd": "E:/mingw-w64-gcc-13.2-stable-r40/bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: E:/mingw-w64-gcc-13.2-stable-r40/bin/g++.exe"
+		}
+	]
 }

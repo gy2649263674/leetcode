@@ -87,24 +87,24 @@
 //// 
 
 
-#include<fstream>
-#include<filesystem>
-#include<regex>
-using std::regex;
-using filesystem::rename;
-int main(void)
-{
-	filesystem::path cwd = filesystem::current_path();
-	std::regex pt{ "rename*" };
-	for (auto& file : std::filesystem::directory_iterator(cwd))
-	{
-		string name = file.path().filename().string();
-		string newname = regex_replace(name, pt, " ");
-		if (name != newname)
-		{
-			rename(name, newname);
-			cout << "renamed :" << name << "---->" << newname << endl;
-		}
-		return 0;
-	}
-}
+//#include<fstream>
+//#include<filesystem>
+//#include<regex>
+//using std::regex;
+//using filesystem::rename;
+//int main(void)
+//{
+//	filesystem::path cwd = filesystem::current_path();
+//	std::regex pt{ "rename*" };
+//	for (auto& file : std::filesystem::directory_iterator(cwd))
+//	{
+//		string name = file.path().filename().string();
+//		string newname = regex_replace(name, pt, " ");
+//		if (name != newname)
+//		{
+//			rename(name, newname);
+//			cout << "renamed :" << name << "---->" << newname << endl;
+//		}
+//		return 0;
+//	}
+//}
