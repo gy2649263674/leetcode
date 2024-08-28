@@ -1,4 +1,4 @@
-﻿/*
+/*
  * @lc app=leetcode.cn id=902 lang=cpp
  * @lcpr version=30204
  *
@@ -20,9 +20,10 @@ using namespace std;
 #include <tuple>
 #include <unordered_map>
 #include <unordered_set>
-#include <utility>
+#include <utility>·
 #include <vector>
 #include <string>
+#include <bits/stdc++.h>
 //#include <bits/stdc++.h>
 // @lcpr-template-end
 // @lc code=start
