@@ -1,9 +1,10 @@
 /*
- * @lc app=leetcode.cn id=16 lang=cpp
+ * @lc app=leetcode.cn id=3142 lang=cpp
  * @lcpr version=30204
  *
- * [16] 最接近的三数之和
+ * [3142] 判断矩阵是否满足条件
  */
+
 
 // @lcpr-template-start
 using namespace std;
@@ -24,44 +25,43 @@ using namespace std;
 #include <vector>
 // @lcpr-template-end
 // @lc code=start
-class Solution
-{
-
+class Solution {
 public:
-    int threeSumClosest(vector<int> &nums, int target)
-    {
-        sort(nums.begin(), nums.end());
-        int ans = 1e9;
-        for(int i = 0;i<nums.size();i++)
+    bool satisfiesConditions(vector<vector<int>>& grid) {
+
+        for(int i = 0;i<grid.size();i++)
         {
-            int l = 0,r = nums.size()-1;
-            int cur;
-            while(l<i&&r>i)
+            for(int j = 0;j<grid[i].size();j++)
             {
-                cur = nums[i]+nums[l]+nums[r];
-                ans = abs(ans-target)<abs(cur-target)?ans:cur;
-                if(cur<target)
+                if(i+1<grid.size()&&grid[i][j]!= grid[i+1][j])
                 {
-                    ++l;
+                    return false;
                 }
-                else
+                if(j+1<grid[i].size()&&grid[i][j]== grid[i][j+1])
                 {
-                    --r;
+                    return false;
                 }
             }
         }
-        return ans;
+        return true;
     }
 };
 // @lc code=end
 
+
+
 /*
 // @lcpr case=start
-// [-1,2,1,-4]\n1\n
+// [[1,0,2],[1,0,2]]\n
 // @lcpr case=end
 
 // @lcpr case=start
-// [0,0,0]\n1\n
+// [[1,1,1],[0,0,0]]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [[1],[2],[3]]\n
 // @lcpr case=end
 
  */
+

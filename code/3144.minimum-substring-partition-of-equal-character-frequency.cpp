@@ -28,7 +28,7 @@ using namespace std;
 class Solution
 {
 public:
-    int minimumSubstringsInPartition(string& s)
+    int minimumSubstringsInPartition(string s)
     {
 
         int dp[1001] = {0};
