@@ -38,8 +38,9 @@ using namespace std;
 class Solution
 {
 public:
-    bool isSubtree(TreeNode *root, TreeNode *subRoot)
+    bool dfs(TreeNode *root, TreeNode *subRoot, bool must)
     {
+
         if (root == NULL)
         {
             return subRoot == NULL;
@@ -48,14 +49,35 @@ public:
         {
             return root == NULL;
         }
-        if (root->val == subRoot->val)
+        if (must)
         {
-            return (this->isSubtree(root->left, subRoot->left) && this->isSubtree(root->right, subRoot->right) || this->isSubtree(root->left, subRoot)) || (this->isSubtree(root->left, subRoot) || this->isSubtree(root->right, subRoot));
+            if (root->val == subRoot->val)
+            {
+                return (this->dfs(root->left, subRoot->left, true) && this->dfs(root->right, subRoot->right, true));
+                // ((this->dfs(root->left, subRoot, must)) || this->dfs(root->right, subRoot, must));
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
-            return this->isSubtree(root->left, subRoot) || this->isSubtree(root->right, subRoot);
+            if (root->val == subRoot->val)
+                return (this->dfs(root->left, subRoot->left, true) && this->dfs(root->right, subRoot->right, true)) ||
+                       ((this->dfs(root->left, subRoot, must)) || this->dfs(root->right, subRoot, must));
+
+            else
+            {
+                return ((this->dfs(root->left, subRoot, must)) || this->dfs(root->right, subRoot, must));
+            }
         }
+        // return this->dfs(root->left, subRoot, false) || this->dfs(root->right, subRoot, false);
+        // return this->dfs(root->left, subRoot, false) || this->dfs(root->right, subRoot, false);
+    }
+    bool isSubtree(TreeNode *root, TreeNode *subRoot)
+    {
+        return dfs(root, subRoot, false);
     }
 };
 // @lc code=end

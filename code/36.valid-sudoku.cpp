@@ -28,7 +28,7 @@ class Solution
 {
 public:
 public:
-    unordered_set<char> col[9], row[9], grid[9];
+    unordered_map<char, int> col[9], row[9], grid[9];
     int get_ri(int x, int y)
     { // 0 1 2
         // 3 4 5
@@ -71,24 +71,24 @@ public:
         }
         return -1;
     }
-    bool dfs(int x, int y, vector<vector<char>> &board)
-    {
-        if (x == 9)
-        {
-            return true;
-        }
-        if (y == 9)
-        {
-            return dfs(x + 1, 0, board);
-        }
-        int rig = get_ri(x, y);
-        char c = board[x][y];
-        if (col[y].count(c) + grid[rig].count(c) + row[x].count(c) > 1)
-        {
-            return dfs(x, y + 1, board);
-        }
-        return false;
-    }
+    // bool dfs(int x, int y, vector<vector<char>> &board)
+    // {
+    //     if (x == 9)
+    //     {
+    //         return true;
+    //     }
+    //     if (y == 9)
+    //     {
+    //         return dfs(x + 1, 0, board);
+    //     }
+    //     int rig = get_ri(x, y);
+    //     char c = board[x][y];
+    //     if (col[y].count(c) + grid[rig].count(c) + row[x].count(c) > 1)
+    //     {
+    //         return dfs(x, y + 1, board);
+    //     }
+    //     return false;
+    // }
     bool isValidSudoku(vector<vector<char>> board)
     {
 
@@ -98,13 +98,17 @@ public:
             {
                 if (board[i][j] != '.')
                 {
-                    row[i].insert(board[i][j]);
-                    col[j].insert(board[i][j]);
-                    grid[get_ri(i, j)].insert(board[i][j]);
+                    if (++row[i][board[i][j]] > 1 ||
+                        ++col[j][board[i][j]] > 1 ||
+                        ++grid[get_ri(i, j)][board[i][j]] > 1)
+                    {
+                        return false;
+                    }
                 }
             }
         }
-        return dfs(0, 0, board);
+        return true;
+        // return dfs(0, 0, board);
     }
 };
 

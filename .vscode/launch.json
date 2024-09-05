@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "args": [],
-      "stopAtEntry": false,
+      "stopAtEntry": true,
       "externalConsole": true,
       "cwd": "e:/zzs/leetcode/code",
       "program": "e:/zzs/leetcode/code/build/Debug/outDebug",
