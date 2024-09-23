@@ -33,23 +33,19 @@ public:
         int o = words.size() & words[0].length(), e = words[0].length();
         // map<string,int>
         map<string, int> st;
-        map<string, int> sp;
-        for (auto &ss : words)
         {
-            ++st[ss];
+            for (auto &ss : words)
+            {
+                ++st[ss];
+            }
         }
-        for (int i = 0; i < words.size(); i++)
-        {
-            ++sp[s.substr(i * e, e)];
-        }
-        vector<int>ans;
         for (int i = 0; i + o < s.length(); i++)
         {
-            if (st == sp)
+            map<string,int>tmp;
+            for (int j = 0; j < words.size(); j++)
             {
-                ans.push_back(i);
+                tmp[s.substr(i,)]
             }
-            sp.erase(s.substr)
         }
     }
 };
