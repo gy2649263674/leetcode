@@ -140,31 +140,54 @@ public:
     {
         vector<int> po;
         sort(bd.begin(), bd.end());
-        po.insert(po.begin(), bd.begin(), bd.end());
-        priority_queue<pair<int, int>, deque<pair<int, int>>, greater<pair<int, int>>> aux;
-        // priority_queue<pair<int,int>,>
+        set<int> tmp;
+        // po.insert(po.begin(), bd.begin(), bd.end());
+        for (int i = 0; i < bd.size(); i++)
+        {
+            tmp.insert(bd[i][0]);
+            tmp.insert(bd[i][1]);
+            // po.push_back(bd[i][0]);
+            // po.push_back(bd[i][1]);
+        }
+        for (auto var : tmp)
+        {
+            po.push_back(var);
+        }
+        // sort(po.begin(), po.end());
+        priority_queue<pair<int, int>, deque<pair<int, int>>, less<pair<int, int>>> aux;
         int j = 0;
-        vector<int>
+        vector<vector<int>> ans;
+        int pre = -1;
         for (int i = 0; i < po.size(); i++)
         {
-            while (j < bd.size() && bd[j][0] <= po[i] && bd[j][1] > po[i])
+            while (j < bd.size() && bd[j][0] <= po[i])
             {
                 aux.push({bd[j][2], bd[j][1]});
                 ++j;
             }
-            // if the top can be push then the l must small then current val 
+            // if the top can be push then the l must small then current val
             // then if the right if bigger the current val then the building is able
-            while(!aux.empty()&&aux.top().second)
+            while (!aux.empty() && aux.top().second <= po[i])
             {
                 aux.pop();
             }
-
+            if (aux.empty() && pre != 0)
+            {
+                ans.push_back({po[i], 0});
+                pre = 0;
+            }
+            else if (pre != aux.top().first)
+            {
+                ans.push_back({po[i], aux.top().first});
+                pre = aux.top().first;
+            }
         }
+        return ans;
     }
     vector<vector<int>> getSkyline(vector<vector<int>> &buildings)
     {
-
-        return violent(buildings);
+        return opt(buildings);
+        // return violent(buildings);
         // int n = buildings.size();
         // tree = vector<int>(n, 0);
         // for (int i = 0; i < n; i++)
@@ -175,7 +198,24 @@ public:
     }
 };
 // @lc code=end
+int main(void)
+{
+    // 1 2 0
+    // 1 2 1
+    Solution s;
+    vector<vector<int>> v({{1, 2, 0}, {1, 2, 1}, {1, 2, 3}});
+    auto ans = s.getSkyline(v);
+    for (int i = 0; i < v.size(); i++)
+    {
+        for (int j = 0; j < ans[i].size(); j++)
+        {
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
+    }
 
+    return 0;
+}
 /*
 // @lcpr case=start
 // [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]\n
