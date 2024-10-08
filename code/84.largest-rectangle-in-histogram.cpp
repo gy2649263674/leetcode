@@ -74,6 +74,13 @@ class Solution
 public:
     int largestRectangleArea(vector<int> &heights)
     {
+        // enum every ele as the height and the wodth should be the dis of l and r that firstly small then the currrent val ;
+        
+
+
+    }
+    int largestRectangleArea1(vector<int> &heights)
+    {
         int n = heights.size();
         int l = 0, r = n - 1;
         int ml = heights[0], mr = heights.back();

@@ -50,7 +50,7 @@
  *
  */
 
- // @lcpr-template-start
+// @lcpr-template-start
 using namespace std;
 #include <algorithm>
 #include <array>
@@ -69,58 +69,61 @@ using namespace std;
 #include <vector>
 // @lcpr-template-end
 // @lc code=start
+
 class Solution
 {
 public:
-	int takeCharacters(string s, int k)
+	int bin(string &s, int k)
 	{
 		int n = s.length();
-		vector<int> st(3, 0);
-		for (int i = 0; i < s.length(); i++)
+		vector<vector<int>> pre(3, vector<int>(s.length() + 1, 0));
+		// doesn't include the val of s[i] when use pre[i]0
+		for (int i = 1; i <= s.length(); i++)
 		{
-			++st[s[i] - 'a'];
+			pre[0][i] = pre[0][i - 1] + (s[i-1] - 'a' == 0);
+			pre[1][i] = pre[1][i - 1] + (s[i-1] - 'a' == 1);
+			pre[2][i] = pre[2][i - 1] + (s[i-1] - 'a' == 2);
 		}
-		if (k == 0)
+		function<bool(int, int)> check = [&](int l, int r) -> bool
 		{
-			return 0;
-		}
-		if (*min_element(st.begin(), st.end()) < k)
-		{
-			return -1;
-		}
-		int l = 0, r = 0;
-		vector<int> cur(3, 0);
+			return pre[0][r + 1] - pre[0][l] <= pre[0][n] - k && pre[1][r + 1] - pre[1][l] <= pre[1][n] - k && pre[2][r + 1] - pre[2][l] <= pre[2][n] - k;
+		};
 		int ans = 1000000;
-		++cur[s[0] - 'a'];
-		while (l < n && r < n)
+		for (int i = 0; i < n; i++)
 		{
-			if (st[0] - cur[0] < k || st[1] - cur[1] < k || st[2] - cur[2] < k)
+			// [l,r)
+			int l = i, r = n - 1, tmp = pre[0][n]>=k&&pre[1][n]>=k&&pre[2][n]>=k?0:-1000000;
+			while (l <= r)
 			{
-				--cur[s[l] - 'a'];
-				++l;
-			}
-			// ++r will extend the window and decrease the useful val 
-			else
-			{
+				int mid = (l + r ) / 2;
+				if (check(i, mid))
+				{
+					tmp = mid - i+1;
+					l = mid + 1;
+				}
+				else
+				{
+					r = mid - 1;
+				}
 
-				//(0,l) (r
-
-				ans = min(ans, n + 1 - (r - l));
-				++cur[s[r] - 'a'];
-				++r;
-				// the min in l r to the max want
 			}
+			ans = min(ans, n - tmp);
 		}
-		return ans > n ? -1 : ans;
+		return  ans>n?-1:ans;
+	}
+	int takeCharacters(string &s, int k)
+	{
+		return bin(s,k);
+
 	}
 };
 //// @lc code=end
-//int main(void)
-//{
-//	Solution s;
-//	cout << s.takeCharacters("acbcc", 1);
-//	return 0;
-//}
+int main(void)
+{
+	Solution s;
+	cout << s.takeCharacters("abc",1);
+	return 0;
+}
 /*
 // @lcpr case=start
 // "aabaaaacaabc"\n2\n
@@ -131,3 +134,42 @@ public:
 // @lcpr case=end
 
  */
+
+		// int n = s.length();
+		// vector<int> st(3, 0);
+		// for (int i = 0; i < s.length(); i++)
+		// {
+		// 	++st[s[i] - 'a'];
+		// }
+		// if (k == 0)
+		// {
+		// 	return 0;
+		// }
+		// if (*min_element(st.begin(), st.end()) < k)
+		// {
+		// 	return -1;
+		// }
+		// int l = 0, r = 0;
+		// vector<int> cur(3, 0);
+		// int ans = 1000000;
+		// ++cur[s[0] - 'a'];
+		// while (l < n && r < n)
+		// {
+		// 	if (st[0] - cur[0] < k || st[1] - cur[1] < k || st[2] - cur[2] < k)
+		// 	{
+		// 		--cur[s[l] - 'a'];
+		// 		++l;
+		// 	}
+		// 	// ++r will extend the window and decrease the useful val
+		// 	else
+		// 	{
+
+		// 		//(0,l) (r
+
+		// 		ans = min(ans, n + 1 - (r - l));
+		// 		++cur[s[r] - 'a'];
+		// 		++r;
+		// 		// the min in l r to the max want
+		// 	}
+		// }
+		// return ans > n ? -1 : ans;

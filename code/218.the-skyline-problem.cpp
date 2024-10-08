@@ -144,16 +144,16 @@ public:
         // po.insert(po.begin(), bd.begin(), bd.end());
         for (int i = 0; i < bd.size(); i++)
         {
-            tmp.insert(bd[i][0]);
-            tmp.insert(bd[i][1]);
-            // po.push_back(bd[i][0]);
-            // po.push_back(bd[i][1]);
+            // tmp.insert(bd[i][0]);
+            // tmp.insert(bd[i][1]);
+            po.push_back(bd[i][0]);
+            po.push_back(bd[i][1]);
         }
-        for (auto var : tmp)
-        {
-            po.push_back(var);
-        }
-        // sort(po.begin(), po.end());
+        // for (auto var : tmp)
+        // {
+        //     po.push_back(var);
+        // }
+        sort(po.begin(), po.end());
         priority_queue<pair<int, int>, deque<pair<int, int>>, less<pair<int, int>>> aux;
         int j = 0;
         vector<vector<int>> ans;
@@ -176,11 +176,12 @@ public:
                 ans.push_back({po[i], 0});
                 pre = 0;
             }
-            else if (pre != aux.top().first)
+            else if (!aux.empty()&&pre != aux.top().first)
             {
                 ans.push_back({po[i], aux.top().first});
                 pre = aux.top().first;
             }
+            // because the same ele 
         }
         return ans;
     }
@@ -203,7 +204,7 @@ int main(void)
     // 1 2 0
     // 1 2 1
     Solution s;
-    vector<vector<int>> v({{1, 2, 0}, {1, 2, 1}, {1, 2, 3}});
+    vector<vector<int>> v({{1, 2, 1}, {1, 2, 2}, {1, 2, 3}});
     auto ans = s.getSkyline(v);
     for (int i = 0; i < v.size(); i++)
     {

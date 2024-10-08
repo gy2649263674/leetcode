@@ -160,8 +160,8 @@
 //			}
 //			aux.push_back({r, times[r]});
 //			sum += costs[r];
-//			// long long cur = 
 //			// if (cur > budget)
+//			// long long cur = 
 //			// {
 //				// sum -= costs[l];
 //			else
