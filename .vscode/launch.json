@@ -6,18 +6,24 @@
       "type": "cppdbg",
       "request": "launch",
       "args": [],
-      "stopAtEntry": false,
+      "stopAtEntry": true,
       "externalConsole": true,
       "cwd": "e:/zzs/leetcode/code",
-      "program": "e:/zzs/leetcode/code/build/Debug/outDebug",
+      "program":"${workspaceFolder}/build/debug/fff.exe",
       "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
+      // "miDebuggerPath": "E:/qtfinal/Tools/mingw1120_64/bin/gdb.exe",
+      "miDebuggerPath": "E:/jetbrains/CLion 2023.3.4/bin/gdb/win/x64/bin/gdb.exe" ,
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
           "text": "-enable-pretty-printing",
           "ignoreFailures": true
-        }
+        },
+        {
+          "description": "Test",
+          "text": "python import sys; sys.path.insert(0, 'C:/MinGW/share/gcc-8.1.0/python');python from libstdcxx.v6.printers import register_libstdcxx_printers; register_libstdcxx_printers(None)",
+          "ignoreFailures": false
+        },
       ]
     }
   ]

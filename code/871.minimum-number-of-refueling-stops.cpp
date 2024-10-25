@@ -133,7 +133,32 @@ using namespace std;
 class Solution
 {
 public:
-    int minRefuelStops(int target, int startFuel, vector<vector<int>> &stations)
+    int minRefuelStops(int target, int sf, vector<vector<int>> &stations)
+    {
+        priority_queue<int, deque<int>, less<int>> aux;
+        long long reach = 0;
+        long long pos = sf, n = stations.size(), ans = 0;
+        while ((reach < n && pos >= stations[reach][0]) || (aux.empty() == false))
+        {
+            while (reach < n && stations[reach][0] <= pos)
+            {
+                aux.push(stations[reach][1]);
+                reach++;
+            }
+            if (pos >= target)
+            {
+                return ans;
+            }
+            else
+            {
+                pos += aux.top();
+                aux.pop();  
+                ++ans;
+            }
+        }
+        return pos >= target ? ans : -1;
+    }
+    int minRefuelStops1(int target, int startFuel, vector<vector<int>> &stations)
     {
         int n = stations.size();
         vector<long long> dp(n + 1);

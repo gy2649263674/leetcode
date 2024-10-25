@@ -4,18 +4,17 @@
 		{
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe build active file",
-			"command": "E:/mingw-w64-gcc-13.2-stable-r40/bin/g++.exe",
+			"command": "C:/MinGW/bin/g++",
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
 				"${file}",
 				"-o",
-				"${workspaceFolder}\\build\\debug\\${fileBasenameNoExtension}.exe",
-				//max current dir's absiolute path
+				"${workspaceFolder}/build/debug/fff.exe",
 				""
 			],
 			"options": {
-				"cwd": "E:/mingw-w64-gcc-13.2-stable-r40/bin"
+				"cwd": "C:/MinGW/bin"
 			},
 			"problemMatcher": [
 				"$gcc"

@@ -1,1 +1,1 @@
-"https://cn.bing.com/"
+1<<i
