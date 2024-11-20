@@ -1,3 +1,0 @@
-﻿  31.next-permutation.cpp
-E:\zzs\leetcode\31.next-permutation.cpp(32,15): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  problems.vcxproj -> E:\zzs\leetcode\problems\x64\Debug\problems.exe

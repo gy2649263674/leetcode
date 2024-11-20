@@ -1,4 +1,8 @@
 .vs
 problems
 *.exe
-
+CmakeFiles
+.lcpr_data
+out
+build
+problems

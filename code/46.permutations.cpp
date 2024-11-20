@@ -5,7 +5,6 @@
  * [46] 全排列
  */
 
-
 // @lcpr-template-start
 using namespace std;
 #include <algorithm>
@@ -25,15 +24,43 @@ using namespace std;
 #include <vector>
 // @lcpr-template-end
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    vector<vector<int>> permute(vector<int>& nums) {
-
+    vector<vector<int>> permute(vector<int> &nums)
+    {
+        int n = nums.size();
+        vector<vector<int>> res;
+        vector<bool> use(n, false);
+        vector<int> tmp;
+        function<void(int)> dfs = [&](int cur) -> void
+        {
+            if (cur == n)
+            {
+                res.push_back(tmp);
+            }
+            else
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (!use[i])
+                    {
+                        tmp.push_back(nums[i]);
+                        use[i] = true;
+                        dfs(cur + 1);
+                        use[i] = false;
+                        tmp.pop_back();
+                    }
+                }
+                return;
+            }
+        };
+        dfs(0);
+        return res;
+        // for()
     }
 };
 // @lc code=end
-
-
 
 /*
 // @lcpr case=start
@@ -49,4 +76,3 @@ public:
 // @lcpr case=end
 
  */
-

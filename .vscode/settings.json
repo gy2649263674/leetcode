@@ -57,6 +57,7 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
+    "*.json": "jsonc",
     "string": "cpp",
     "format": "cpp",
     "chrono": "cpp",
@@ -148,7 +149,9 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp",
-    "climits": "cpp"
+    "climits": "cpp",
+    "stack": "cpp",
+    "queue": "cpp"
   },
   "git.ignoreLimitWarning": true,
   "search-online.search-engine": "Bing",

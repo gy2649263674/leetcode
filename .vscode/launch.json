@@ -2,26 +2,39 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "preLaunchTask": "C/C++: g++.exe build active file",
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
-      "stopAtEntry": true,
+      "stopAtEntry": false,
       "externalConsole": true,
       "cwd": "e:/zzs/leetcode/code",
-      "program":"${workspaceFolder}/build/debug/fff.exe",
+      "program": "${workspaceFolder}/build/debug/fff.exe",
       "MIMode": "gdb",
       // "miDebuggerPath": "E:/qtfinal/Tools/mingw1120_64/bin/gdb.exe",
-      "miDebuggerPath": "E:/jetbrains/CLion 2023.3.4/bin/gdb/win/x64/bin/gdb.exe" ,
+      "miDebuggerPath": "E:/jetbrains/CLion 2023.3.4/bin/gdb/win/x64/bin/gdb.exe",
       "setupCommands": [
+        {
+          "description": "Enable logging",
+          "text": "-gdb-set logging on",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Increase verbosity",
+          "text": "-gdb-set verbose on",
+          "ignoreFailures": true
+        },
         {
           "description": "Enable pretty-printing for gdb",
           "text": "-enable-pretty-printing",
           "ignoreFailures": true
         },
         {
+          // pattention to the text don't add more python anywhere 
+          // the python
           "description": "Test",
-          "text": "python import sys; sys.path.insert(0, 'C:/MinGW/share/gcc-8.1.0/python');python from libstdcxx.v6.printers import register_libstdcxx_printers; register_libstdcxx_printers(None)",
+          "text": "python\n import sys; sys.path.insert(0, 'C:/MinGW/share/gcc-8.1.0/python');from libstdcxx.v6.printers import register_libstdcxx_printers; register_libstdcxx_printers(None)",
           "ignoreFailures": false
         },
       ]

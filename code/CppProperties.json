@@ -6,8 +6,8 @@
       ],
       "name": "x64-Debug",
       "includePath": [
-        "${env.INCLUDE}",
-        "${workspaceRoot}\\**"
+        "${env.INCLUDE}"
+        //"${workspaceRoot}\\**"
       ],
       "defines": [
         "WIN32",

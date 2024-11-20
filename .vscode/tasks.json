@@ -4,9 +4,10 @@
 		{
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe build active file",
-			"command": "C:/MinGW/bin/g++",
+			"command": "E:\\mingw-w64-gcc-13.2-stable-r40\\bin\\g++.exe",
 			"args": [
 				"-fdiagnostics-color=always",
+				"-pthread",
 				"-g",
 				"${file}",
 				"-o",
