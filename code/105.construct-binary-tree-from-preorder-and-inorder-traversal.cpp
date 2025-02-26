@@ -69,6 +69,7 @@ using namespace std;
 //
 //  Definition for a binary tree node.
 #ifdef LOCAL
+#endif
 struct TreeNode
 {
     int val;
@@ -78,11 +79,15 @@ struct TreeNode
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
-#endif
 class Solution
 {
 public:
     TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder)
+    {
+        
+        
+    }
+    TreeNode *buildTree0(vector<int> &preorder, vector<int> &inorder)
     {
         unordered_map<int, int> in;
         for (int i = 0; i < inorder.size(); i++)
@@ -122,7 +127,6 @@ public:
     }
 
     // TreeNode *buildTree2(vector<int> &preorder, vector<int> &inorder)
-
 };
 // @lc code=end
 
